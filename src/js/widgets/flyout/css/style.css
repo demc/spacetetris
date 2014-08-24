@@ -1,0 +1,126 @@
+/* FLYOUT */
+
+.flyout {
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    top: 50%;
+    z-index: 99;
+    font-family: Segoe UI;
+    top: 35%;
+    width: 100%;
+}
+
+
+.flyout-body {
+    background-color: #FFF;
+    border: 5px solid #FFF;
+    border-width: 5px 0;
+    min-height: 100%;
+    padding: 20px 0;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+.flyout-content-body {
+    color: #222;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+    text-align: left;
+}
+
+.flyout-content-body-full {
+    width: 720px;
+}
+
+.flyout-content-body-filled {
+    width: 480px;
+}
+
+.flyout-content-body-snapped {
+    padding: 0 5%;
+    width: 90%;
+}
+
+.flyout-title {
+    font-family: 'Segoe UI Light';
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.flyout-content-body-snapped .flyout-title {
+
+}
+
+/* FLYOUT BUTTONS */
+
+.flyout-buttons {
+    padding-top: 10px;
+    float: right;
+}
+
+.flyout-buttons button {
+    padding: 2px 10px;
+    border: none;
+    background-color: rgb(204, 204, 204);
+    font-family: 'Segoe UI Semibold', 'Segoe UI', 'Arial';
+    font-size: 16px;
+    color: #000;
+    margin-left: 15px;
+}
+
+.flyout-buttons button:active, button:focus {
+    background-color: rgb(70, 70, 70);
+    color: #FFF;
+}
+
+.flyout-content-body-snapped .flyout-buttons {
+    width: 100%;
+}
+
+.flyout-content-body-snapped .flyout-buttons button {
+    margin-left: 0;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.flyout-input-pane {
+    padding-top: 10px;
+}
+
+.flyout-input-pane input[type="text"] {
+    border: 1px solid #222;
+}
+
+/* FLYOUT BLUR */
+
+.flyout-blur {
+    background-color: #000;
+    height: 100%;
+    left: 0;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+}
+
+/* MISC */
+
+.heading {
+    color: #222;
+    font-weight: 100; 
+}
+
+h1.heading {
+    margin: 5px 0;
+}
+
+.icon {
+    font-family: 'Segoe UI Symbol';
+}

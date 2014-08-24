@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Tetris</title>
+
+    <!-- WinJS references -->
+<!--     <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+ -->
+    <!-- jQuery & jQuery UI -->
+    <!--<script src="/js/lib/jquery-1.9.1.min.js"></script>-->
+    <!--<script src="/js/lib/jquery-ui-1.10.0.min.js"></script>-->
+    <!--<script src="/js/lib/knockout-2.2.1.min.js"></script>-->
+
+    <!-- Tetris references -->
+    <link href="/css/default.css" rel="stylesheet" />
+
+    <script src="/js/array.js"></script>
+    <script src="/js/jumprope.js"></script>
+    <script src="/js/Viewport.js"></script>
+
+    <script src="/js/tetris-utils.js"></script>
+    <script src="/js/tetris.js"></script>
+    <script src="/js/tetriminos.js"></script>
+
+    <!-- Flyout -->
+    <link href="/js/widgets/flyout/css/style.css" rel="stylesheet" />
+
+    <script src="/js/lib/require.js"></script>
+    <!-- TOOD: bad hack. figure out what's wrong with data-main -->
+    <script>
+        require.config({
+            baseUrl: '/js'
+        });
+    </script>
+    <script src="/js/widgets/flyout/js/index.js"></script>
+</head>
+<body>
+    <canvas id="grid" width="200" height="400"></canvas>
+
+    <div id="scoreboard-vertical" class="scoreboard">
+        <table>
+            <tr><td class="scoreboard-title">NEXT</td></tr>
+            <tr><td class="scoreboard-panel"><canvas id="scoreboard-next-vertical" width="100" height="200"></canvas></td></tr>
+            <tr><td class="scoreboard-title">SCORE</td></tr>
+            <tr><td class="scoreboard-panel"><span id="scoreboard-score-vertical">00</span></td></tr>
+            <tr><td class="scoreboard-title">LINES</td></tr>
+            <tr><td class="scoreboard-panel"><span id="scoreboard-lines-vertical">00</span></td></tr>
+        </table>
+
+        <div class="scoreboard-background"></div>
+    </div>
+
+    <div id="scoreboard-horizontal" class="scoreboard">
+        <table>
+            <thead>
+                <tr>
+                    <td class="scoreboard-title">NEXT</td>
+                    <td class="scoreboard-title">SCORE</td>
+                    <td class="scoreboard-title">LINES</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="scoreboard-panel"><canvas id="scoreboard-next-horizontal"></canvas></td>
+                    <td class="scoreboard-panel"><span id="scoreboard-score-horizontal">00</span></td>
+                    <td class="scoreboard-panel"><span id="scoreboard-lines-horizontal">00</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="scoreboard-background"></div>
+    </div>
+
+<!--     <div id="highscore-flyout" data-win-control="WinJS.UI.Flyout">
+        <div class="win-type-x-large">Submit Your Score</div>
+        <div>
+            <label for="highscore-username">Your name: </label>
+            <input id="highscore-username" type="text" />
+        </div>
+        <button id="highscore-submit-button">&#xE10B; Submit</button>
+    </div> -->
+
+    <!-- FLYOUT -->
+    <div class="flyout-wrapper" data-bind="visible: visible" style="visibility: hidden">
+    	<div class="flyout">
+	        <div class="flyout-body">
+	        	<div class="flyout-content-body" data-bind="css: bodyStyle, template: { name: 'flyout-view-template', data: selectedPane }">
+		        </div>
+		    </div>
+		</div>
+
+       <div class="flyout-blur" data-bind="click: handleBlurClick"></div>
+    </div>
+
+    <script type="text/template" id="flyout-view-template">
+        <h2 class="flyout-title heading" data-bind="text: title"></h2>
+
+		<div>
+            <span data-bind="text: message"></span>
+		</div>
+
+        <div class="flyout-pane-errors" data-bind="foreach: errors">
+            <span data-bind="text: message"></span>    
+        </div>
+
+        <div data-bind="visible: loading">
+            <progress class="win-ring"></progress>
+            <label data-bind="text: loadingMessage"></label>
+        </div>
+
+        <div class="flyout-input-pane" data-bind="visible: !loading(), foreach: fields">
+            <label data-bind="text: label, attr: { for: id }"></label><br/>
+            <input data-bind="attr: { type: type, id: id }" />
+        </div>
+
+		<div class="flyout-buttons" data-bind="visible: !loading(), foreach: buttons">
+			<button class="btn" data-bind="click: click">
+			    <span data-bind="text: icon"></span>
+			    <span data-bind="text: label"></span>
+			</button>
+		</div>
+    </script>
+
+    <div id="background">
+        <div id="background-1"></div>
+        <div id="background-2"></div>
+    </div>              
+
+    <!-- Playtomic -->
+    <!-- // <script src="/js/lib/playtomic.js"></script> -->
+    <script>
+
+        window.addEventListener('DOMContentLoaded', function () {
+            Tetris.utils.initBackground();
+            Tetris.Game.init();
+        });
+
+    </script>
+</body>
+</html>

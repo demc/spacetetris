@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Tetris</title>
+    <!-- WinJS references -->
+<!--     <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+ -->
+    <!-- Tetris references -->
+    <link href="css/default.css" rel="stylesheet" />
+    <script src="js/tetris-utils.js"></script>
+</head>
+<body>
+    <div id="page-wrapper">
+        <div id="content-wrapper">
+            <div id="masthead">
+                <h1>SpaceTetris</h1>
+            </div>
+            
+            <br class="clearer" />
+
+            <div class="menu horizontal">
+                <ul>
+                    <li>
+                        <a href="tetris.html" class="metro-button green">
+                            <span class="metro-button-text">New Game</span>
+                        </a>
+                    </li>
+                    <!-- Uncomment when features are ready -->
+<!--
+                    <li>
+                        <a href="highscores.html" class="metro-button orange">
+                            <span class="metro-button-text">High Scores</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="rules.html" class="metro-button purple">
+                            <span class="metro-button-text">Rules</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="about.html" class="metro-button cyan">
+                            <span class="metro-button-text">About</span>
+                        </a>
+                    </li>-->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="background">
+       <div id="background-1"></div>
+        <div id="background-2"></div>
+    </div>
+
+    <script>
+
+        window.onload = function () {
+            Tetris.utils.initBackground();
+        };
+
+        window.onresize = function () {
+            var avs = Windows.UI.ViewManagement.ApplicationViewState,
+            currentView = Windows.UI.ViewManagement.ApplicationView.value;
+
+            switch (currentView) {
+                case avs.snapped:
+                    apply(WinJS.Utilities.addClass, 'small');
+                    break;
+                default:
+                    apply(WinJS.Utilities.removeClass, 'small');
+            }
+
+            function apply(fn, clazz) {
+                var buttons = document.querySelectorAll('.metro-button');
+
+                for (var i = 0; i < buttons.length; i++) {
+                    fn.apply(this, [buttons[i], clazz]);
+                }
+            }
+        };
+
+    </script>
+</body>
+</html>
